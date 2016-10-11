@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<package name="show_result" extends="struts-default">
+		<global-results>
+			<result name="error">error.jsp</result>	
+		</global-results>
+
+      	<action name="result" 
+        	class="com.manage.ShowResults" 
+            method="match">
+            <result name="success">
+            	/show_results.jsp
+            </result>
+      	</action>
+          
+      	<action name="ShowBook"
+	      	class="com.manage.ShowDetail" 
+	      	method="Select">
+	      	<result>
+	      	    /detail.jsp
+	        </result>
+	    </action>
+	     
+	    <action name="Delete"
+			class="com.manage.DeleteBook"
+			method="deletedb" >
+			<result type="redirectAction">
+				<param name="actionName">result</param>
+				<param name="AuthorName">${AuthorName}</param>
+			</result>
+	    </action>
+	    
+	    <action name="Add"
+	    	class="com.manage.AddBook"
+	    	method="adddb" >
+	    	<result>
+	    		/index.html
+	    	</result>
+	    	<result name="input_error">
+	    		/add_book_error.jsp
+	    	</result>
+	    </action> 
+	    
+	    <action name="Origin"
+	    	class="com.manage.OriginData">
+	    	<result>
+	    	/show_origin.jsp
+	    	</result>
+	    </action>
+	    
+	    <action name="Edit"
+	    	class="com.manage.EditBook"
+	    	method="editdb">
+	    	<result type="redirectAction">
+				<param name="actionName">result</param>
+				<param name="AuthorName">${eAuthorName}</param>
+			</result>	
+	    	<result type="redirectAction" name="input_error">
+	    		<param name="actionName">Origin</param>
+				<param name="AuthorName">${eAuthorName}</param>
+				<param name="Publisher">${ePublisher}</param>
+				<param name="PublishDate">${ePublishDate}</param>
+				<param name="Price">${ePrice}</param>
+				<param name="Title">${eTitle}</param>
+	    	</result>
+	    </action>
+	    
+	    <action name="showexist"
+	    	class="com.manage.ShowBooks">
+			<result>
+				/show_books.jsp
+			</result>
+		</action>
+   	</package>
+	
+</struts>
