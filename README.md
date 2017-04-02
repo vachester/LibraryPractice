@@ -17,7 +17,7 @@
 			Publisher varchar(100) not null,
 			PublishDate varchar(100) not null,
 			Price varchar(100) not null);
-* 在Author表中`PK`是__AuthorID__，Book中为__ISBN__，且Book中的__AuthorID__设置为`FK`并且以Author的AuthorID为参考
+* 在Author表中`PK`是**AuthorID**，Book中为**ISBN**，且Book中的**AuthorID**设置为`FK`并且以Author的AuthorID为参考
 
 ####实现功能
 * 查询功能：输入作者名字，可以搜索到该作者存在数据库的所有图书;
